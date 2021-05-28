@@ -12,13 +12,16 @@ import java.util.List;
 
 public class RegistrationFacebookTest {
 
-    @Test
-    public void fullRegistrationTest() throws InterruptedException {
-        //WebDriver driver = getDriver();
-
+    private WebDriver getDriver() {
         System.setProperty("webdriver.chrome.driver", "drivers/chromedriver.exe");
         WebDriver driver = new ChromeDriver();
         driver.get("https://www.facebook.com");
+        return driver;
+    }
+
+    @Test
+    public void fullRegistrationTest() throws InterruptedException {
+        WebDriver driver = getDriver();
 
         driver.findElement(By.linkText("Create New Account")).click();
         Thread.sleep(2000);
@@ -27,7 +30,7 @@ public class RegistrationFacebookTest {
         driver.findElement(By.name("lastname")).sendKeys("Smith");
         driver.findElement(By.name("reg_email__")).sendKeys("5555555");
         driver.findElement(By.name("reg_passwd__")).sendKeys("123456789");
-        cambiarBirthay(driver, "26", "Jun", "1980");
+        setBirthdate(driver, "26", "Jun", "1980");
 
         List<WebElement> sexList = driver.findElements(By.name("sex"));
         Assert.assertEquals(sexList.size(), 3);
@@ -36,18 +39,18 @@ public class RegistrationFacebookTest {
         selectMale.click();
     }
 
-    public void cambiarBirthay(WebDriver driver, String day, String month, String date) {
+    public void setBirthdate(WebDriver driver, String day, String month, String date) {
 
-        WebElement months = driver.findElement(By.name("birthday_month"));
-        Select selectMonths = new Select(months);
+        WebElement elementMonths = driver.findElement(By.name("birthday_month"));
+        Select selectMonths = new Select(elementMonths);
         selectMonths.selectByVisibleText(month);
 
-        WebElement days = driver.findElement(By.id("day"));
-        Select selectDays = new Select(days);
+        WebElement elementDays = driver.findElement(By.id("day"));
+        Select selectDays = new Select(elementDays);
         selectDays.selectByValue(day);
 
-        WebElement years = driver.findElement(By.id("year"));
-        Select selectYears = new Select(years);
+        WebElement elementYears = driver.findElement(By.id("year"));
+        Select selectYears = new Select(elementYears);
         selectYears.selectByValue(date);
     }
 }
