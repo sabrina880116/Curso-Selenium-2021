@@ -16,6 +16,7 @@ public class RegistrationFacebookTest {
         System.setProperty("webdriver.chrome.driver", "drivers/chromedriver.exe");
         WebDriver driver = new ChromeDriver();
         driver.get("https://www.facebook.com");
+       // driver.getTitle();
         return driver;
     }
 
