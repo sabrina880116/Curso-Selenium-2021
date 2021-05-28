@@ -25,7 +25,7 @@ public class RegistrationFacebookTest {
         WebDriver driver = getDriver();
 
         driver.findElement(By.linkText("Create New Account")).click();
-        Thread.sleep(2000);
+       // Thread.sleep(2000);
 
         driver.findElement(By.name("firstname")).sendKeys("John");
         driver.findElement(By.name("lastname")).sendKeys("Smith");
