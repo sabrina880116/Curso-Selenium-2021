@@ -30,7 +30,7 @@ public class RegistrationFacebookTest {
         driver.findElement(By.name("lastname")).sendKeys("Smith");
         driver.findElement(By.name("reg_email__")).sendKeys("5555555");
         driver.findElement(By.name("reg_passwd__")).sendKeys("123456789");
-        setBirthdate(driver, "26", "Jun", "1980");
+        setBirthdate(driver, "26", "Jun", "1988");
 
         List<WebElement> sexList = driver.findElements(By.name("sex"));
         Assert.assertEquals(sexList.size(), 3);
