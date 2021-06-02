@@ -24,7 +24,7 @@ public class RegistrationFacebookTest {
     public void fullRegistrationTest() throws InterruptedException {
         WebDriver driver = getDriver();
 
-        driver.findElement(By.linkText("Create New Account")).click();
+        driver.findElement(By.linkText("Crear cuenta nueva")).click();
        // Thread.sleep(2000);
 
         driver.findElement(By.name("firstname")).sendKeys("John");
