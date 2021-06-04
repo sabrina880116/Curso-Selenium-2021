@@ -12,6 +12,11 @@ import java.util.List;
 
 public class RegistrationFacebookTest {
 
+    private WebDriver driver;
+    private String day;
+    private String month;
+    private String date;
+
     private WebDriver getDriver() {
         System.setProperty("webdriver.chrome.driver", "drivers/chromedriver.exe");
         WebDriver driver = new ChromeDriver();
@@ -25,13 +30,13 @@ public class RegistrationFacebookTest {
         WebDriver driver = getDriver();
 
         driver.findElement(By.linkText("Crear cuenta nueva")).click();
-       // Thread.sleep(2000);
+        Thread.sleep(2000);
 
         driver.findElement(By.name("firstname")).sendKeys("John");
         driver.findElement(By.name("lastname")).sendKeys("Smith");
         driver.findElement(By.name("reg_email__")).sendKeys("5555555");
         driver.findElement(By.name("reg_passwd__")).sendKeys("123456789");
-        setBirthdate(driver, "26", "Jun", "1988");
+        setBirthdate(driver, "26", 2, "1988");
 
         List<WebElement> sexList = driver.findElements(By.name("sex"));
         Assert.assertEquals(sexList.size(), 3);
@@ -40,11 +45,13 @@ public class RegistrationFacebookTest {
         selectMale.click();
     }
 
-    public void setBirthdate(WebDriver driver, String day, String month, String date) {
+        public void setBirthdate(WebDriver driver, String day, /*String month*/int month, String date) {
 
-        WebElement elementMonths = driver.findElement(By.name("birthday_month"));
+        // WebElement elementMonths = driver.findElement(By.name("birthday_month"));
+        WebElement elementMonths = driver.findElement(By.id("month"));
         Select selectMonths = new Select(elementMonths);
-        selectMonths.selectByVisibleText(month);
+        selectMonths.selectByIndex(month);
+       // selectMonths.selectByValue("feb");
 
         WebElement elementDays = driver.findElement(By.id("day"));
         Select selectDays = new Select(elementDays);
